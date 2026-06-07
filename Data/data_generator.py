@@ -113,7 +113,7 @@ def format_item_variations(items, messy=False):
             messy_items.append(variation)
         return "|".join(messy_items)
     return "|".join(items)
-
+  
 
 def generate_date_variations(messy=False):
     """Generate order date with various formats. Returns (date_string, format_identifier)."""

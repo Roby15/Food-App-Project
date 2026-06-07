@@ -146,7 +146,7 @@ def validate_data(content,cupon_frequency_until_suspicious):
         yield row
             
         
-        analysiz_dict = {
+        analysis_dict = {
         "order_ids_bad": count_bad_order_ids,
         "customer_ids_bad": count_bad_customer_ids,
         "bad_status_orders": count_bad_status_orders,
@@ -155,7 +155,7 @@ def validate_data(content,cupon_frequency_until_suspicious):
         "suspicious_coupon_codes": count_suspicious_cupon,
         "bad_dates": count_bad_dates
     }
-    yield analysiz_dict
+    yield analysis_dict
             
     
 
