@@ -4,7 +4,7 @@ ORD-1002,CUST-525,Diana Voinea,Wok Express,Fried Rice| Spring rolls| Dumplings,-
 ORD-1003,CUST-504,Mihai Ionescu,CURRY CORNER ,Mango Lassi,12 ron,45,1,LOYALTY5,completed,2026-13-45,invalid
 ORD-1004,CUST-546,Ruxandra Mihail,TACO FIESTA, Chicken Taco,  14  ,33,,LOYALTY5,COMPLETED,08-04-2026,DD-MM-YYYY
 ORD-1005,CUST-511,Stefan Iorga,Curry Corner,Chicken Tikka,32 RON,56,2,LOYALTY5,completed,2026-04-03,YYYY-MM-DD
-ORD-1006,CUST-509,Bogdan Florea,Sushi House,Sashimi Platter,45 RON,170,0,,completed,2026-04-23,YYYY-MM-DD
+ORD-1006,CUST-509,Bogdan Florea,Sushi House,Coffee| Hamburger | lasagna,45 RON,170,0,,completed,2026/04/23,YYYY-MM-DD
 ORD-1007,CUST-539,Diana Voinea,Dessert Den,Coffee| Hamburger | lasagna ,8 RON,160,5,,completed,2026-04-14,YYYY-MM-DD
 ORD-1008,CUST-529,Maria Popa,Burger Planet,Cheeseburger,,,,,refunded,2026-04-07,YYYY-MM-DD
 ORD-1008,CUST-538,Ana Popescu,Curry Corner,Chicken Tikka| Hamburger | lasagna,32 RON,450,five,,completed,2026-04-13,YYYY-MM-DD
