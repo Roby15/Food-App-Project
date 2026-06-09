@@ -1,0 +1,58 @@
+Food Delivery Order Quality Report
+==================================
+
+Dataset Summary
+---------------
+Total records read: 10,000
+Valid cleaned records: 6,161
+Invalid records: 3,839
+Suspicious records: 648
+Records requiring cleaning: 6,161
+
+Order Status Summary
+--------------------
+Completed orders: 5,604
+Cancelled orders: 442
+Refunded orders: 115
+
+Revenue Summary
+---------------
+Completed-order revenue: 210,651.00 RON
+Average completed order value: 37.59 RON
+Highest revenue restaurant: Bbq Barn 27,690.00 RON
+
+Delivery Summary
+----------------
+Average delivery time: 39.9 minutes
+Slowest average restaurant: Wok Express 40.48 minutes
+Orders above 120 minutes: 516
+
+Average Ratings
+---------------
+• Dessert Den: 3.12 stars
+• Taco Fiesta: 3.12 stars
+• Wok Express: 3.03 stars
+• Bbq Barn: 3.02 stars
+• Pasta Paradise: 3.01 stars
+• Sushi House: 3.00 stars
+• Salad Station: 2.99 stars
+• Pizza Palace: 2.98 stars
+• Curry Corner: 2.97 stars
+• Burger Planet: 2.78 stars
+
+
+Popular Items
+-------------
+1. Green Tea: 449 orders
+2. Caesar Salad: 430 orders
+3. Cola: 419 orders
+
+Anomalies Found
+---------------
+Duplicate order IDs: 512
+Invalid prices: 529
+Suspicious coupon customers: 10
+Invalid delivery times: 1437
+Suspicious delivery time: 516
+Suspicious ratings: 130
+

@@ -69,6 +69,6 @@ Suspicious ratings: {suspicious_rating}
     print(report_str)
 
     # Write to file
-    #os.makedirs("reports", exist_ok=True)
-    #with open("reports/order_quality_report.txt", "w", encoding="utf-8") as f:
-        #f.write(report_str)
+    os.makedirs("reports", exist_ok=True)
+    with open("reports/order_quality_report.txt", "w", encoding="utf-8") as f:
+        f.write(report_str)
