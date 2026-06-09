@@ -1,15 +1,17 @@
 class InvalidOrder(Exception):
     # Plural counter variables
     count_bad_order_ids = 0
-    count_duplicate_order_ids = 0
+    count_duplicate_order_ids = 0 #suspicious
     count_bad_customer_ids = 0
     count_bad_status_orders = 0
-    count_suspicious_delivery_times = 0
+    count_suspicious_delivery_times = 0 #suspicious
     count_bad_ratings = 0
-    count_suspicious_cupons = 0
+    count_suspicious_cupons = 0 #suspicious
     count_bad_dates = 0
     count_bad_delivery_times=0
-
+    count_suspicious_ratings=0
+    count_imposible_delivery_times=0
+    count_bad_order_totals=0
     # Singular counter/factory classmethods
     @classmethod
     def count_bad_order_id(cls, message="Invalid order ID"):
@@ -56,3 +58,17 @@ class InvalidOrder(Exception):
         cls.count_bad_delivery_times +=1
         return cls(message)
 
+    @classmethod
+    def count_suspicious_rating(cls, message="This rating is not between 1 and 5"):
+        cls.count_suspicious_ratings +=1
+        return cls(message)
+
+    @classmethod
+    def count_imposible_delivery_time(cls, message="This delivery time is 0 or a negative value"):
+        cls.count_imposible_delivery_times +=1
+        return cls(message)
+
+    @classmethod
+    def count_bad_order_total(cls, message="Order total is invalid"):
+        cls.count_bad_order_totals +=1
+        return cls(message)

@@ -19,8 +19,10 @@ def convert_columns(content):
     for row in content:
         if row["flagged"]==False:
             number_total_order=row["order_total"].lower().replace("ron","").strip()
-            if number_total_order.isnumeric():
+            try:
                 row["order_total"]=float(number_total_order)
+            except:
+                pass
             row["delivery_minutes"]=int(row["delivery_minutes"])
             if row["rating"].isnumeric():
                 row["rating"]=int(row["rating"])

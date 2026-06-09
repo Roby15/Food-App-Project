@@ -41,23 +41,26 @@ def order_total_validation(content):
     try:
         amount = float(number_total_order)
     except:
-        raise InvalidOrder("Order total not convertible")
+        
+        raise InvalidOrder.count_bad_order_total()
     if amount < 1:
-        raise InvalidOrder("Number is negative or 0")
+        
+        raise InvalidOrder.count_bad_order_total()
 
 
-def delivery_minutes_validation(content, suspicios_count):
+def delivery_minutes_validation(content):
     if content["delivery_minutes"] == "":
         raise InvalidOrder.count_bad_delivery_time()
     if not content["delivery_minutes"].isnumeric():
         raise InvalidOrder.count_bad_delivery_time()
     delivery_time = int(content["delivery_minutes"])
     if delivery_time < 1:
-        raise InvalidOrder.count_suspicious_delivery_time("Delivery time should be greater than 0")
+        raise InvalidOrder.count_imposible_delivery_time()
     if 120 < delivery_time < 240:
-        suspicios_count = 1
-        return suspicios_count
+        content["suspicious"] = True
+        raise InvalidOrder.count_suspicious_delivery_time()
     if delivery_time > 240:
+        content["suspicious"] = True
         raise InvalidOrder.count_suspicious_delivery_time("Delivery time is invalid")
 
 
@@ -67,12 +70,14 @@ def rating_validation(content):
     if not content["rating"].isnumeric():
         raise InvalidOrder.count_bad_rating("Rating is not a number")
     if content["rating"] < '1' or content["rating"] > '5':
-        raise InvalidOrder.count_bad_rating("Rating is not in the normal range")
+        content["rating"]="out of range"
+        content["suspicious"] = True
+        raise InvalidOrder.count_suspicious_rating()
 
 
 def cupon_code_validator(content):
     if not (all(char.isalnum() or char in "-_" for char in content["coupon_code"])):
-        raise InvalidOrder.count_suspicious_cupon("Cupon code is invalid")
+        raise InvalidOrder("Cupon code is invalid")
     return content["coupon_code"]
 
 
@@ -98,12 +103,17 @@ def validate_data(content, cupon_frequency_until_suspicious):
     InvalidOrder.count_bad_ratings = 0
     InvalidOrder.count_suspicious_cupons = 0
     InvalidOrder.count_bad_dates = 0
+    InvalidOrder.count_bad_delivery_times = 0
+    InvalidOrder.count_suspicious_ratings = 0
+    InvalidOrder.count_imposible_delivery_times = 0
+        
 
     validated_ids_dict = {}
     suspicious_coupons_dict = {}
     for row in content:
         try:
             row["flagged"] = False
+            row["suspicious"] = False
             order_id = order_id_validation(row)
             if validated_ids_dict.get(order_id, 0):
                 raise InvalidOrder.count_duplicate_order_id()
@@ -124,9 +134,8 @@ def validate_data(content, cupon_frequency_until_suspicious):
         except InvalidOrder:
             row["flagged"] = True
         try:
-            res = delivery_minutes_validation(row, 0)
-            if res:
-                InvalidOrder.count_suspicious_delivery_time()
+            delivery_minutes_validation(row)
+                
         except InvalidOrder:
             row["flagged"] = True
         try:
@@ -141,6 +150,7 @@ def validate_data(content, cupon_frequency_until_suspicious):
                 else:
                     suspicious_coupons_dict[coupon_code] = 1
                 if suspicious_coupons_dict.get(coupon_code) == cupon_frequency_until_suspicious:
+                    row["suspicious"] = True
                     raise InvalidOrder.count_suspicious_cupon("Suspicious number of identic coupon codes")
         except InvalidOrder:
             pass
